@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Tweet from "./Tweet";
+import SearchBar from "./SearchBar";
 
 function App() {
 
@@ -14,11 +15,9 @@ function App() {
 
   return (
     <div className="app">
+      <SearchBar />
       <Tweet name="Sean" message="This is a random tweet"/>
       <Tweet name="Jack" message="What's up dudes?"/>
-      <Tweet name="Jane" message="Having a burger here"/>
-      <Tweet name="Ed" message="Cold coffee sucks"/>
-
       <button onClick={increment}>Increment</button>
       <h1>{count}</h1>
       </div>
