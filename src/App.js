@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState, useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Tweet from "./Tweet";
@@ -9,19 +9,32 @@ function App() {
 
   let [visible, setVisible] = useState(true);
 
+  let postRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", (event) => {
+      if (!postRef.current.contains(event.target)) {
+        setVisible(true);
+      }
+    })
+  });
+
   
-    return (
-      <div className="app">
-        <div className="search" onClick={() => setVisible((visible) => !visible)}>
+  return (
+    <div className="app">
+
+      <div className="search" onClick={() => setVisible((visible) => !visible)}>
         {visible ? <SearchBar /> : null}
-        </div>
-        {visible ? null : <NewPost />}
-        
-        <Tweet name="Sean" message="This is a random tweet"/>
-        <Tweet name="Jack" message="What's up dudes?"/>
-        
       </div>
-    )
+
+      <div ref={postRef} className="post">
+        {visible ? null : <NewPost />}
+      </div>
+      
+      
+      
+    </div>
+  )
   
 
   
