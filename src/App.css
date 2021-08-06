@@ -27,6 +27,10 @@
   border: none;
 }
 
+.post-box{
+  padding-top: 100px;
+}
+
 .post input{
   padding: 60px;
   background: white;
