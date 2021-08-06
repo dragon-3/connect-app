@@ -5,30 +5,24 @@ import Tweet from "./Tweet";
 import SearchBar from "./SearchBar";
 import NewPost from "./NewPost";
 
-class App extends Component {
+function App() {
 
-  constructor() {
-    super();
-    this.state = {
-      visible: false
-    }
-  }
+  let [visible, setVisible] = useState(true);
 
-
-  render() {
+  
     return (
       <div className="app">
-        <div className="search" onClick={() => {this.setState({visible: true})}}>
-        {this.state.visible ? null : <SearchBar />}
+        <div className="search" onClick={() => setVisible((visible) => !visible)}>
+        {visible ? <SearchBar /> : null}
         </div>
-        {this.state.visible ? <NewPost /> : null}
+        {visible ? null : <NewPost />}
         
         <Tweet name="Sean" message="This is a random tweet"/>
         <Tweet name="Jack" message="What's up dudes?"/>
         
       </div>
     )
-  }
+  
 
   
 }
