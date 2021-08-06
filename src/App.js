@@ -3,25 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 import Tweet from "./Tweet";
 import SearchBar from "./SearchBar";
+import NewPost from "./NewPost";
 
-function App() {
+class App extends Component {
 
-  const [isRed, setRed] = useState(false);
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(count + 1);
+  constructor() {
+    super();
+    this.state = {
+      visible: false
+    }
   }
 
-  return (
-    <div className="app">
-      <SearchBar />
-      <Tweet name="Sean" message="This is a random tweet"/>
-      <Tweet name="Jack" message="What's up dudes?"/>
-      <button onClick={increment}>Increment</button>
-      <h1>{count}</h1>
+
+  render() {
+    return (
+      <div className="app">
+        <div className="search" onClick={() => {this.setState({visible: true})}}>
+        {this.state.visible ? null : <SearchBar />}
+        </div>
+        {this.state.visible ? <NewPost /> : null}
+        
+        <Tweet name="Sean" message="This is a random tweet"/>
+        <Tweet name="Jack" message="What's up dudes?"/>
+        
       </div>
-  )
+    )
+  }
+
+  
 }
 
 export default App;
