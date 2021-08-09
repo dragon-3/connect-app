@@ -7,10 +7,7 @@ import NewPost from "./NewPost";
 
 function App() {
 
-  let [visible, setVisible] = useState(true);
-
   
-
   
   return (
     <div className="app">
