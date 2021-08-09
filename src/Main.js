@@ -1,23 +1,33 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useRef, useEffect } from 'react';
+import NewPost from './NewPost';
 
 
-class SearchBar extends Component {
+function Main() {
     
+  let [visible, setVisible] = useState(true);
 
+  let postRef = useRef();
 
-    render() {
+  useEffect(() => {
+    document.addEventListener("mousedown", (event) => {
+      if (!postRef.current.contains(event.target)) {
+        setVisible(true);
+      }
+    })
+  });
+
         return(
-            <div className="search-box">
-                <div className="search-bar">
-                    <form action="/action_page.php">
-                        <label for="fname"></label>
-                        <input type="text" id="fname" name="fname" placeholder="    What's on your mind?"></input>
-                    </form>
+            <div className="main">
+                <button onClick={() => setVisible((visible) => !visible)}>Write a post</button>
+
+                <div ref={postRef} className="post">
+                    {visible ? null : <NewPost />}
                 </div>
+
             </div>
+
         )
-    }
     
 }
 
-export default SearchBar;
+export default Main;
